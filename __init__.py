@@ -147,11 +147,12 @@ async def screenshotDynamic(dynamic_id):
 class tools(PBF):
     def __enter__(self):
         from utils import scheduler
-        flag = False
-        if scheduler.get_jobs("test_tick"):
-            flag = True
-        if not flag:
-            scheduler.add_job(test_tick, 'interval', seconds=40, id="test_tick", replace_existing=True)
+        scheduler.add_job(BilibiliSub, 'interval', seconds=40, id="BilibiliSub", replace_existing=True)
+        '''
+        for i in self.mysql.selectx("SELECT * FROM `botSettings`"):
+            if i.get('sche') != 0 and i.get('sche') < 600:
+                scheduler.add_job(scheNotice, 'interval', seconds=i.get('sche'), id=f"sche{i.get('qn')}", replace_existing=True, kwargs={"qn":i.get("qn"),"content":i.get('scheContent'),"uuid":i.get("uuid")})
+        '''
 
         return [
             RegCmd(
@@ -889,10 +890,15 @@ class tools(PBF):
 
 
 # apscheduler
-def test_tick():
+def scheNotice(**kwargs):
+    qn, content, uuid = kwargs.get('qn'), kwargs.get('content'), kwargs.get('uuid')
+    assert qn, content, uuid
+    
+
+
+def BilibiliSub():
     botIns = PBF(Struct())
     try:
-        botIns.logger.debug("Running test_tick...")
         for i in botIns.mysql.selectx("SELECT * FROM `botBiliDynamic`;"):
             try:
                 dynamic_id = getDynamic(i.get("uid"))
