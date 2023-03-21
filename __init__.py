@@ -148,11 +148,11 @@ class tools(PBF):
     def __enter__(self):
         from utils import scheduler
         scheduler.add_job(BilibiliSub, 'interval', seconds=40, id="BilibiliSub", replace_existing=True)
-        '''
         for i in self.mysql.selectx("SELECT * FROM `botSettings`"):
-            if i.get('sche') != 0 and i.get('sche') < 600:
+            if i.get('sche') != 0:
+                # and i.get('sche') < 600:
+                print('scheAdd', i)
                 scheduler.add_job(scheNotice, 'interval', seconds=i.get('sche'), id=f"sche{i.get('qn')}", replace_existing=True, kwargs={"qn":i.get("qn"),"content":i.get('scheContent'),"uuid":i.get("uuid")})
-        '''
 
         return [
             RegCmd(
@@ -482,6 +482,16 @@ class tools(PBF):
                 function = "tools@listBiliSub",
                 description = "查看本群关注的UP猪们",
                 mode = "B 站爬虫",
+                hidden = 0,
+                type = "command"
+            ),
+            RegCmd(
+                name = "开始定时消息",
+                usage = "开始定时消息",
+                permission = "anyone",
+                function = "tools@startMsg",
+                description = "开始定时消息\n具体消息内容及发送间隔请使用“修改设置”",
+                mode = "定时消息",
                 hidden = 0,
                 type = "command"
             )
@@ -871,7 +881,12 @@ class tools(PBF):
             self.send("{}关注成功！".format(self.data.message))
         else:
             self.send("本群已关注过{}了！".format(self.data.message))
+    
+    def startMsg(self):
+        from utils import scheduler
         
+        i = self.data.groupSettings
+        scheduler.add_job(scheNotice, 'interval', seconds=i.get('sche'), id=f"sche{i.get('qn')}", replace_existing=True, kwargs={"qn":i.get("qn"),"content":i.get('scheContent'),"uuid":i.get("uuid")})
     
     def delBiliSub(self):
         self.mysql.commonx("DELETE FROM `botBiliDynamicQn` WHERE `uid`=%s AND `qn`=%s", (self.data.message, self.data.se.get("group_id")))
@@ -891,9 +906,11 @@ class tools(PBF):
 
 # apscheduler
 def scheNotice(**kwargs):
+    print('scheNotice', kwargs)
     qn, content, uuid = kwargs.get('qn'), kwargs.get('content'), kwargs.get('uuid')
-    assert qn, content, uuid
-    
+    assert ((qn != None) and (content != None) and (uuid != None)), "qn, content, uuid不能为空"
+    bot = PBF(Struct(se={"group_id":qn,"user_id":2417481092}, uuid=uuid))
+    bot.send(content)
 
 
 def BilibiliSub():
