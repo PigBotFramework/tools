@@ -155,346 +155,278 @@ class tools(PBF):
                 scheduler.add_job(scheNotice, 'interval', seconds=i.get('sche'), id=f"sche{i.get('qn')}", replace_existing=True, kwargs={"qn":i.get("qn"),"content":i.get('scheContent'),"uuid":i.get("uuid")})
 
         return [
-            RegCmd(
-                name = "翻译 ",
-                usage = "翻译 <目标语言>",
-                permission = "anyone",
-                function = "tools@trans",
-                description = "翻译到任何语言（谷歌翻译）",
-                mode = "实用功能",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "查 ",
-                usage = "查 <@对方>",
-                permission = "owner",
-                function = "tools@chaQQ",
-                description = "查询QQ绑定",
-                mode = "防护系统",
-                hidden = 1,
-                type = "command"
-            ),
-            RegCmd(
-                name = "兽语加密 ",
-                usage = "兽语加密 <内容>",
-                permission = "anyone",
-                function = "tools@encode_shou_u",
-                description = "兽语加密",
-                mode = "兽言兽语",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "兽语解密 ",
-                usage = "兽语解密 <内容>",
-                permission = "anyone",
-                function = "tools@decode_shou_u",
-                description = "兽语解密",
-                mode = "兽言兽语",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "戳一戳 ",
-                usage = "戳一戳 <@对方QQ>",
-                permission = "owner",
-                function = "tools@chuo",
-                description = "让机器人戳一戳",
-                mode = "只因器人",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "群发 ",
-                usage = "群发 <群发内容>",
-                permission = "owner",
-                function = "tools@qunfa",
-                description = "给机器人加入的群发消息",
-                mode = "公告系统",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "友发 ",
-                usage = "友发 <要给每个好友发的消息内容>",
-                permission = "ro",
-                function = "tools@haoyoufa",
-                description = "给机器人好友发送消息",
-                mode = "公告系统",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "说 ",
-                usage = "说 <消息内容>",
-                permission = "owner",
-                function = "tools@echo",
-                description = "让机器人说",
-                mode = "只因器人",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "cqcode ",
-                usage = "cqcode <CQ的值>[ <附加参数(键值对)> ...]",
-                permission = "owner",
-                function = "tools@cqcode",
-                description = "发送自定义CQ码",
-                mode = "只因器人",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "md5 ",
-                usage = "md5 <要加密的内容>",
-                permission = "anyone",
-                function = "tools@md5",
-                description = "MD5加密",
-                mode = "实用功能",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "转语音 ",
-                usage = "转语音 <要转语音的内容>",
-                permission = "owner",
-                function = "tools@zhuan",
-                description = "将文字转为语音",
-                mode = "实用功能",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "mysql查询 ",
-                usage = "mysql查询 <sql语句>",
-                permission = "xzy",
-                function = "tools@mysqlselect",
-                description = "对php10数据库执行sql语句",
-                mode = "只因器人",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "mysql执行 ",
-                usage = "mysql执行 <sql语句>",
-                permission = "xzy",
-                function = "tools@mysqlgo",
-                description = "对php10数据库进行查询操作",
-                mode = "只因器人",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "运势",
-                usage = "运势",
-                permission = "anyone",
-                function = "tools@yunshi",
-                description = "今天运势怎么样呢awa",
-                mode = "装神弄鬼",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "逐字汉译英 ",
-                usage = "逐字汉译英 <要翻译的内容>",
-                permission = "anyone",
-                function = "tools@twbw",
-                description = "逐字逐句地翻译",
-                mode = "实用功能",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "网页截图 ",
-                usage = "网页截图 <地址>",
-                permission = "ao",
-                function = "tools@getWP",
-                description = "给网页截图",
-                mode = "网页截图",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "百度搜索 ",
-                usage = "百度搜索 <关键词>",
-                permission = "anyone",
-                function = "tools@baiduSearch",
-                description = "使用百度搜索，发送结果截图",
-                mode = "搜索系统",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "B站搜索 ",
-                usage = "B站搜索 <关键词>",
-                permission = "anyone",
-                function = "tools@biliSearch",
-                description = "使用B站搜索，发送结果截图",
-                mode = "搜索系统",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "必应搜索 ",
-                usage = "必应搜索 <关键词>",
-                permission = "anyone",
-                function = "tools@bingSearch",
-                description = "使用必应搜索，发送结果截图",
-                mode = "搜索系统",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "谷歌搜索 ",
-                usage = "谷歌搜索 <关键词>",
-                permission = "anyone",
-                function = "tools@googleSearch",
-                description = "使用谷歌搜索，发送结果截图",
-                mode = "搜索系统",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "生成拦截 ",
-                usage = "生成拦截 <要生成的网址>",
-                permission = "anyone",
-                function = "tools@shengchenghonglian",
-                description = "生成qq拦截的页面",
-                mode = "网页截图",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "怼 ",
-                usage = "怼 <@要怼的人> <次数> <间隔时间>",
-                permission = "owner",
-                function = "tools@dui",
-                description = "让机器人怼人",
-                mode = "防护系统",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "新手教程",
-                usage = "新手教程",
-                permission = "anyone",
-                function = "tools@xinshou",
-                description = "发送新手教程",
-                mode = "新手入门",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "获取头像 ",
-                usage = "获取头像 <@要获取的人>",
-                permission = "anyone",
-                function = "tools@getHeadImage",
-                description = "获取某人的头像！",
-                mode = "实用功能",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "关机",
-                usage = "关机",
-                permission = "ao",
-                function = "tools@TurnOffBot",
-                description = "关闭机器人",
-                mode = "群聊管理",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "BOTQG",
-                usage = "让机器人退群",
-                permission = "ro",
-                function = "tools@QuiteGroup",
-                description = "让机器人退群",
-                mode = "防护系统",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "今日人品",
-                usage = "今日人品",
-                permission = "anyone",
-                function = "tools@renpin",
-                description = "来看看今天人品咋样吧qwq",
-                mode = "装神弄鬼",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "插件列表",
-                usage = "插件列表",
-                permission = "anyone",
-                function = "tools@listPlugins",
-                description = "列出当前机器人本地的插件",
-                mode = "只因器人",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "艾特全体",
-                usage = "艾特全体",
-                permission = "admin",
-                function = "tools@atAll",
-                description = "艾特全体成员",
-                mode = "实用功能",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "获取动态 ",
-                usage = "获取动态 <B站ID>",
-                permission = "anyone",
-                function = "tools@dynamic",
-                description = "获取动态",
-                mode = "B 站爬虫",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "B站订阅 ",
-                usage = "B站订阅 <B站ID>",
-                permission = "ao",
-                function = "tools@addBiliSub",
-                description = "订阅UP猪的动态推送！",
-                mode = "B 站爬虫",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "B站取关 ",
-                usage = "B站取关 <B站ID>",
-                permission = "ao",
-                function = "tools@delBiliSub",
-                description = "取关动态推送！",
-                mode = "B 站爬虫",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "B站关注列表",
-                usage = "B站关注列表",
-                permission = "anyone",
-                function = "tools@listBiliSub",
-                description = "查看本群关注的UP猪们",
-                mode = "B 站爬虫",
-                hidden = 0,
-                type = "command"
-            ),
-            RegCmd(
-                name = "开始定时消息",
-                usage = "开始定时消息",
-                permission = "anyone",
-                function = "tools@startMsg",
-                description = "开始定时消息\n具体消息内容及发送间隔请使用“修改设置”",
-                mode = "定时消息",
-                hidden = 0,
-                type = "command"
-            )
+    @RegCmd(
+        name = "翻译 ",
+        usage = "翻译 <目标语言>",
+        permission = "anyone",
+        function = "tools@trans",
+        description = "翻译到任何语言（谷歌翻译）",
+        mode = "实用功能"
+    )
+    @RegCmd(
+        name = "查 ",
+        usage = "查 <@对方>",
+        permission = "owner",
+        function = "tools@chaQQ",
+        description = "查询QQ绑定",
+        mode = "防护系统"
+    )
+    @RegCmd(
+        name = "兽语加密 ",
+        usage = "兽语加密 <内容>",
+        permission = "anyone",
+        function = "tools@encode_shou_u",
+        description = "兽语加密",
+        mode = "兽言兽语"
+    )
+    @RegCmd(
+        name = "兽语解密 ",
+        usage = "兽语解密 <内容>",
+        permission = "anyone",
+        function = "tools@decode_shou_u",
+        description = "兽语解密",
+        mode = "兽言兽语"
+    )
+    @RegCmd(
+        name = "戳一戳 ",
+        usage = "戳一戳 <@对方QQ>",
+        permission = "owner",
+        function = "tools@chuo",
+        description = "让机器人戳一戳",
+        mode = "只因器人"
+    )
+    @RegCmd(
+        name = "群发 ",
+        usage = "群发 <群发内容>",
+        permission = "owner",
+        function = "tools@qunfa",
+        description = "给机器人加入的群发消息",
+        mode = "公告系统"
+    )
+    @RegCmd(
+        name = "友发 ",
+        usage = "友发 <要给每个好友发的消息内容>",
+        permission = "ro",
+        function = "tools@haoyoufa",
+        description = "给机器人好友发送消息",
+        mode = "公告系统"
+    )
+    @RegCmd(
+        name = "说 ",
+        usage = "说 <消息内容>",
+        permission = "owner",
+        function = "tools@echo",
+        description = "让机器人说",
+        mode = "只因器人"
+    )
+    @RegCmd(
+        name = "cqcode ",
+        usage = "cqcode <CQ的值>[ <附加参数(键值对)> ...]",
+        permission = "owner",
+        function = "tools@cqcode",
+        description = "发送自定义CQ码",
+        mode = "只因器人"
+    )
+    @RegCmd(
+        name = "md5 ",
+        usage = "md5 <要加密的内容>",
+        permission = "anyone",
+        function = "tools@md5",
+        description = "MD5加密",
+        mode = "实用功能"
+    )
+    @RegCmd(
+        name = "转语音 ",
+        usage = "转语音 <要转语音的内容>",
+        permission = "owner",
+        function = "tools@zhuan",
+        description = "将文字转为语音",
+        mode = "实用功能"
+    )
+    @RegCmd(
+        name = "mysql查询 ",
+        usage = "mysql查询 <sql语句>",
+        permission = "xzy",
+        function = "tools@mysqlselect",
+        description = "对php10数据库执行sql语句",
+        mode = "只因器人"
+    )
+    @RegCmd(
+        name = "mysql执行 ",
+        usage = "mysql执行 <sql语句>",
+        permission = "xzy",
+        function = "tools@mysqlgo",
+        description = "对php10数据库进行查询操作",
+        mode = "只因器人"
+    )
+    @RegCmd(
+        name = "运势",
+        usage = "运势",
+        permission = "anyone",
+        function = "tools@yunshi",
+        description = "今天运势怎么样呢awa",
+        mode = "装神弄鬼"
+    )
+    @RegCmd(
+        name = "逐字汉译英 ",
+        usage = "逐字汉译英 <要翻译的内容>",
+        permission = "anyone",
+        function = "tools@twbw",
+        description = "逐字逐句地翻译",
+        mode = "实用功能"
+    )
+    @RegCmd(
+        name = "网页截图 ",
+        usage = "网页截图 <地址>",
+        permission = "ao",
+        function = "tools@getWP",
+        description = "给网页截图",
+        mode = "网页截图"
+    )
+    @RegCmd(
+        name = "百度搜索 ",
+        usage = "百度搜索 <关键词>",
+        permission = "anyone",
+        function = "tools@baiduSearch",
+        description = "使用百度搜索，发送结果截图",
+        mode = "搜索系统"
+    )
+    @RegCmd(
+        name = "B站搜索 ",
+        usage = "B站搜索 <关键词>",
+        permission = "anyone",
+        function = "tools@biliSearch",
+        description = "使用B站搜索，发送结果截图",
+        mode = "搜索系统"
+    )
+    @RegCmd(
+        name = "必应搜索 ",
+        usage = "必应搜索 <关键词>",
+        permission = "anyone",
+        function = "tools@bingSearch",
+        description = "使用必应搜索，发送结果截图",
+        mode = "搜索系统"
+    )
+    @RegCmd(
+        name = "谷歌搜索 ",
+        usage = "谷歌搜索 <关键词>",
+        permission = "anyone",
+        function = "tools@googleSearch",
+        description = "使用谷歌搜索，发送结果截图",
+        mode = "搜索系统"
+    )
+    @RegCmd(
+        name = "生成拦截 ",
+        usage = "生成拦截 <要生成的网址>",
+        permission = "anyone",
+        function = "tools@shengchenghonglian",
+        description = "生成qq拦截的页面",
+        mode = "网页截图"
+    )
+    @RegCmd(
+        name = "怼 ",
+        usage = "怼 <@要怼的人> <次数> <间隔时间>",
+        permission = "owner",
+        function = "tools@dui",
+        description = "让机器人怼人",
+        mode = "防护系统"
+    )
+    @RegCmd(
+        name = "新手教程",
+        usage = "新手教程",
+        permission = "anyone",
+        function = "tools@xinshou",
+        description = "发送新手教程",
+        mode = "新手入门"
+    )
+    @RegCmd(
+        name = "获取头像 ",
+        usage = "获取头像 <@要获取的人>",
+        permission = "anyone",
+        function = "tools@getHeadImage",
+        description = "获取某人的头像！",
+        mode = "实用功能"
+    )
+    @RegCmd(
+        name = "关机",
+        usage = "关机",
+        permission = "ao",
+        function = "tools@TurnOffBot",
+        description = "关闭机器人",
+        mode = "群聊管理"
+    )
+    @RegCmd(
+        name = "BOTQG",
+        usage = "让机器人退群",
+        permission = "ro",
+        function = "tools@QuiteGroup",
+        description = "让机器人退群",
+        mode = "防护系统"
+    )
+    @RegCmd(
+        name = "今日人品",
+        usage = "今日人品",
+        permission = "anyone",
+        function = "tools@renpin",
+        description = "来看看今天人品咋样吧qwq",
+        mode = "装神弄鬼"
+    )
+    @RegCmd(
+        name = "插件列表",
+        usage = "插件列表",
+        permission = "anyone",
+        function = "tools@listPlugins",
+        description = "列出当前机器人本地的插件",
+        mode = "只因器人"
+    )
+    @RegCmd(
+        name = "艾特全体",
+        usage = "艾特全体",
+        permission = "admin",
+        function = "tools@atAll",
+        description = "艾特全体成员",
+        mode = "实用功能"
+    )
+    @RegCmd(
+        name = "获取动态 ",
+        usage = "获取动态 <B站ID>",
+        permission = "anyone",
+        function = "tools@dynamic",
+        description = "获取动态",
+        mode = "B 站爬虫"
+    )
+    @RegCmd(
+        name = "B站订阅 ",
+        usage = "B站订阅 <B站ID>",
+        permission = "ao",
+        function = "tools@addBiliSub",
+        description = "订阅UP猪的动态推送！",
+        mode = "B 站爬虫"
+    )
+    @RegCmd(
+        name = "B站取关 ",
+        usage = "B站取关 <B站ID>",
+        permission = "ao",
+        function = "tools@delBiliSub",
+        description = "取关动态推送！",
+        mode = "B 站爬虫"
+    )
+    @RegCmd(
+        name = "B站关注列表",
+        usage = "B站关注列表",
+        permission = "anyone",
+        function = "tools@listBiliSub",
+        description = "查看本群关注的UP猪们",
+        mode = "B 站爬虫"
+    )
+    @RegCmd(
+        name = "开始定时消息",
+        usage = "开始定时消息",
+        permission = "anyone",
+        function = "tools@startMsg",
+        description = "开始定时消息\n具体消息内容及发送间隔请使用“修改设置”",
+        mode = "定时消息"
+    )
         ]
 
     def dynamic(self, echo=True):
