@@ -794,7 +794,7 @@ class tools(PBF):
         if ob == None:
             return self.send('请先发送“注册”，注册后再测运势')
 
-        if ob._get('zong') == None or ob._get('shiye') == None or ob._get('taohua') == None or ob._get('cai') == None:
+        if ob._get('zong') in [None, ""]:
             self.send('[CQ:face,id=151] 祈祷中...')
             shiye = random.randint(1, 100)
             taohua = random.randint(1, 100)
