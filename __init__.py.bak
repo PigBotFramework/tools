@@ -607,7 +607,7 @@ class tools(PBF):
         self.send('[CQ:face,id=189] 开始搜索...')
         message = message.lstrip().rstrip().replace(' ', '%20')
 
-        self.data.message = 'https://cn.bing.com/search?q=' + str(message) + ' 3 bing.png'
+        self.data.message = 'https://cn.bing.com/search?q=' + str(message) + ' 1 bing.png'
         self.getWP(echo=False)
 
     @RegCmd(
