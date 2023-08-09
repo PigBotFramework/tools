@@ -699,13 +699,9 @@ class tools(PBF):
                             nsfwPer = nsfw.main("./resources/createimg/{0}".format(filename))["nsfw"]
                             if nsfwPer >= 0.8:
                                 self.send("真好看，自己去看吧，要不然我会被疼讯制裁的😭")
-                            else:
-                                self.send(f"[CQ:image,cache=0,file=https://pbfresources.xzynb.top/createimg/{filename}] {name}已经帮你截完图啦，这个图片来自于指定网站，不代表{name}的观点，与本猪无关哦🐷💦")
                         except Exception:
-                            self.send(f"[CQ:image,cache=0,file=https://pbfresources.xzynb.top/createimg/{filename}] {self.data.botSettings._get('name')}已经帮你截完图啦，这个图片来自于指定网站，不代表{self.data.botSettings._get('name')}的观点，与本猪无关哦")
-                    else:
-                        self.send("[CQ:image,cache=0,file=https://pbfresources.xzynb.top/createimg/" + str(
-                            filename) + "]")
+                            pass
+                    self.send(f"[CQ:image,cache=0,file=https://pbfresources.xzynb.top/createimg/{filename}] {name}已经帮你截完图啦，这个图片来自于指定网站，不代表{name}的观点，与本猪无关哦🐷💦")
                 else:
                     self.send('[CQ:face,id=151] 请使用正确的协议头！')
         except Exception as e:
