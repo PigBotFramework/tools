@@ -705,7 +705,7 @@ class tools(PBF):
                 else:
                     self.send('[CQ:face,id=151] 请使用正确的协议头！')
         except Exception as e:
-            self.send('截获错误，请检查网站网址是否正确，是否可以访问\n错误信息：{}'.format(traceback.format_exc()))
+            self.send('截获错误，请检查网站网址是否正确，是否可以访问\n错误信息：{}'.format(e))
 
     @RegCmd(
         name="翻译 ",
