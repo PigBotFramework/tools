@@ -645,6 +645,18 @@ class tools(PBF):
 
         self.data.message = 'https://baidu.com/s?word=' + str(message) + ' 1 baiduSearch.png'
         self.getWP(echo=False)
+        
+    @RegCmd(
+        name="IAEA数据",
+        usage="IAEA数据",
+        permission="anyone",
+        description ="获取国际原子能机构有关核废水排放的实时数据",
+        mode="核废水排放"
+    )
+    def iaeadata(self):
+        self.send('[CQ:face,id=189] 截图中...')
+        self.data.message = 'https://www.iaea.org/topics/response/fukushima-daiichi-nuclear-accident/fukushima-daiichi-alps-treated-water-discharge/tepco-data 1 iaea.org.png'
+        self.getWP(echo=False)
 
     @RegCmd(
         name="网页截图 ",
